@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     const tagData = await Tag.findAll({
       include: [{ model: Product, ProductTag }],
     });
+    
     res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
@@ -36,6 +37,7 @@ router.post('/', async (req, res) => {
     const tagData = await Tag.create({
       include: [{ model: Product, ProductTag }],
     });
+    
     res.status(200).json(tagData);
   } catch (err) {
     res.status(400).json(err);
