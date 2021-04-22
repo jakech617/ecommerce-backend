@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
-  }
+  };
+
 });
 
 router.get('/:id', async (req, res) => {
@@ -22,12 +23,13 @@ router.get('/:id', async (req, res) => {
     if (!productData) {
       res.status(404).json({ message: 'No product found with that ID'});
       return;
-    }
+    };
 
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
-  }
+  };
+
 });
 
 router.post('/', async (req, res) => {
@@ -39,7 +41,7 @@ router.post('/', async (req, res) => {
     res.status(200).json(productData);
   } catch (err) {
     res.status(400).json(err);
-  }
+  };
 
   Product.create(req.body)
     .then((product) => {
@@ -51,7 +53,7 @@ router.post('/', async (req, res) => {
           };
         });
         return ProductTag.bulkCreate(productTagIdArr);
-      }
+      };
       
       res.status(200).json(product);
     })
@@ -75,12 +77,12 @@ router.put('/:id', async (req, res) => {
     if (!productData) {
       res.status(404).json({ message: 'No product found with that ID'});
       return;
-    }
+    };
 
     res.status(200).json(productData);
   } catch (err) {
     res.status(400).json(err);
-  }
+  };
 
   Product.update(req.body, {
     where: {
@@ -135,7 +137,7 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   };
-  
+
 });
 
 module.exports = router;
