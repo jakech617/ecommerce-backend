@@ -4,7 +4,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({
-      include: [{ model: Category, Tag, ProductTag }],
+      include: [{ all: true }],
     });
 
     res.status(200).json(productData);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: Category, Tag, ProductTag }],
+      include: [{ all: true }],
     });
 
     if (!productData) {
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const productData = await Product.create({
-      include: [{ model: Category, Tag, ProductTag }],
+      include: [{ all: true }],
       product_name: req.body.product_name
     });
     res.status(200).json(productData);
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const productData = await Product.update({
-      include: [{ model: Category, Tag, ProductTag }],
+      include: [{ all: true }],
       category_name: req.body.tag_name,
       where: {
         id: req.params.id
@@ -122,7 +122,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const productData = await Product.destroy({
-      include: [{ model: Category, Tag, ProductTag }],
+      include: [{ all: true }],
       where: {
         id: req.params.id,
       },
