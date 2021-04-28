@@ -63,24 +63,6 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  try {
-    const productData = await Product.update({
-      include: [{ all: true }],
-      category_name: req.body.tag_name,
-      where: {
-        id: req.params.id
-      },
-    });
-
-    if (!productData) {
-      res.status(404).json({ message: 'No product found with that ID'});
-      return;
-    };
-
-    res.status(200).json(productData);
-  } catch (err) {
-    res.status(400).json(err);
-  };
 
   Product.update(req.body, {
     where: {
